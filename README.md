@@ -1,4 +1,4 @@
-# sqlmig
+# Postgres Migrations
 
 Simple PostgreSQL migrations CLI
 
