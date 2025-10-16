@@ -1,0 +1,36 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    environment: release
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+
+      - run: npm install -g npm
+      - run: npm install -g pnpm
+      - run: pnpm install --frozen-lockfile
+      
+      - run: |
+          VERSION=${GITHUB_REF#refs/tags/}
+          VERSION=${VERSION#v}
+          echo "Setting package version to $VERSION"
+          pnpm version $VERSION --no-git-tag-version
+
+      - run: pnpm build
+
+      - run: npm publish --no-git-checks --access public
