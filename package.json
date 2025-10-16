@@ -1,5 +1,5 @@
 {
-    "name": "pgmig",
+    "name": "sqlmig",
     "version": "0.0.0",
     "description": "A package for handling PostgreSQL migrations",
     "author": "Kevlid",
@@ -17,10 +17,10 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/Kevlid/pgmig.git"
+        "url": "https://github.com/Kevlid/sqlmig.git"
     },
     "bin": {
-        "pgmig": "./dist/cli.js"
+        "sqlmig": "./dist/cli.js"
     },
     "dependencies": {
         "pg": "^8.16.3"

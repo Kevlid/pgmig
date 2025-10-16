@@ -1,11 +1,11 @@
-# pgmig
+# sqlmig
 
 Simple PostgreSQL migrations CLI
 
 ## Install
 
 ```bash
-npm install pgmig
+npm install sqlmig
 ```
 
 ## Quick Start
@@ -13,7 +13,7 @@ npm install pgmig
 1. Create your first migration:
 
 ```bash
-npx pgmig create add_users
+npx sqlmig create add_users
 ```
 
 This creates `1-add_users.sql` in your migrations folder.
@@ -45,43 +45,43 @@ DB_PASSWORD=secret
 4. Run migrations:
 
 ```bash
-npx pgmig up
+npx sqlmig up
 ```
 
 ## Commands
 
-### `pgmig create <name>`
+### `sqlmig create <name>`
 
 Creates a new migration file with the next number.
 
 ```bash
-pgmig create add_posts
+sqlmig create add_posts
 # Creates: 2-add_posts.sql
 ```
 
-### `pgmig up`
+### `sqlmig up`
 
 Runs all pending migrations.
 
 ```bash
-pgmig up
+sqlmig up
 ```
 
-### `pgmig down [n]`
+### `sqlmig down [n]`
 
 Rolls back the last `n` migrations (default: 1).
 
 ```bash
-pgmig down     # Rollback 1
-pgmig down 3   # Rollback 3
+sqlmig down     # Rollback 1
+sqlmig down 3   # Rollback 3
 ```
 
-### `pgmig status`
+### `sqlmig status`
 
 Shows which migrations have run and which are pending.
 
 ```bash
-pgmig status
+sqlmig status
 ```
 
 ## Configuration
@@ -110,16 +110,16 @@ Override environment variables with flags:
 
 ```bash
 # Connection string
-pgmig up --uri postgres://user:pass@localhost:5432/mydb
+sqlmig up --uri postgres://user:pass@localhost:5432/mydb
 
 # Individual values
-pgmig up -h localhost -p 5432 -d mydb -u postgres -w secret
+sqlmig up -h localhost -p 5432 -d mydb -u postgres -w secret
 
 # Custom migrations folder
-pgmig up -m ./db/migrations
+sqlmig up -m ./db/migrations
 
 # Custom .env file
-pgmig up -e .env.production
+sqlmig up -e .env.production
 ```
 
 ## Migration Files
@@ -158,7 +158,7 @@ DROP TABLE posts;
 ## How It Works
 
 1. The CLI creates a `migrations` table in your database to track what's been run
-2. When you run `pgmig up`, it checks which migrations haven't been executed yet
+2. When you run `sqlmig up`, it checks which migrations haven't been executed yet
 3. Each migration runs in a transaction - if it fails, it rolls back automatically
 4. The migration ID is stored in the database so it won't run again
 
@@ -168,32 +168,32 @@ DROP TABLE posts;
 
 ```bash
 # Create a migration
-pgmig create add_comments_table
+sqlmig create add_comments_table
 
 # Edit the SQL file
 # migrations/3-add_comments_table.sql
 
 # Check status
-pgmig status
+sqlmig status
 
 # Run it
-pgmig up
+sqlmig up
 
 # Made a mistake? Roll it back
-pgmig down
+sqlmig down
 
 # Fix it and run again
-pgmig up
+sqlmig up
 ```
 
 ### Production Deployment
 
 ```bash
 # Using connection string from environment
-DATABASE_URL=$PROD_DB_URL pgmig up
+DATABASE_URL=$PROD_DB_URL sqlmig up
 
 # Or using individual credentials
-pgmig up -h prod-db.example.com -d production_db -u admin -w $PROD_PW
+sqlmig up -h prod-db.example.com -d production_db -u admin -w $PROD_PW
 ```
 
 ### CI/CD Example
@@ -203,12 +203,12 @@ pgmig up -h prod-db.example.com -d production_db -u admin -w $PROD_PW
 - name: Run migrations
   env:
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
-  run: npx pgmig up
+  run: npx sqlmig up
 ```
 
 ## Migrations Folder
 
-By default, pgmig looks for migrations in:
+By default, sqlmig looks for migrations in:
 
 1. `./migrations`
 2. `./db/migrations`
@@ -217,7 +217,7 @@ By default, pgmig looks for migrations in:
 You can specify a custom path with `-m`:
 
 ```bash
-pgmig up -m ./sql/migrations
+sqlmig up -m ./sql/migrations
 ```
 
 ## Options Reference

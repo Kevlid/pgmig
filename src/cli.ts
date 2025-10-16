@@ -5,7 +5,7 @@ import { Migrator } from "./migrator";
 import { createMigration } from "./utils";
 
 const help = `
-pgmig - PostgreSQL migrations
+sqlmig - PostgreSQL migrations
 
 Commands:
   up          Run pending migrations
@@ -26,9 +26,9 @@ Options:
   -w, --password          Password
 
 Examples:
-  pgmig up
-  pgmig create add_users
-  pgmig down 2
+  sqlmig up
+  sqlmig create add_users
+  sqlmig down 2
 `;
 
 async function main() {
@@ -69,7 +69,7 @@ async function main() {
         if (cmd === "create") {
             const name = args.find((a) => !a.startsWith("-"));
             if (!name) {
-                console.error("Missing name\nUsage: pgmig create <name>");
+                console.error("Missing name\nUsage: sqlmig create <name>");
                 process.exit(1);
             }
 
