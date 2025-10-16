@@ -42,7 +42,7 @@ function getDb(args: CLIArgs, env: Record<string, string>): DbConfig {
     return {
         host: args.host || env.DB_HOST || env.POSTGRES_HOST || "localhost",
         port: args.port || parseInt(env.DB_PORT || env.POSTGRES_PORT || "5432"),
-        database: args.database || env.DB_NAME || env.POSTGRES_DB || "",
+        database: args.database || env.DB_NAME || env.POSTGRES_DB || env.POSTGRES_DATABASE || "",
         user: args.user || env.DB_USER || env.POSTGRES_USER || "",
         password: args.password || env.DB_PASSWORD || env.POSTGRES_PASSWORD || "",
     };
