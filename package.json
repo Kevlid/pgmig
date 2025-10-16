@@ -11,8 +11,8 @@
         "sql"
     ],
     "scripts": {
-        "build": "tsup",
-        "dev": "tsup --watch",
+        "build": "tsc",
+        "dev": "tsc --watch",
         "clean": "rm -rf ./dist"
     },
     "repository": {
@@ -23,15 +23,8 @@
         "url": "https://github.com/Kevlid/pgmig/issues"
     },
     "homepage": "https://github.com/Kevlid/pgmig#readme",
-    "main": "dist/index.cjs",
-    "module": "dist/index.js",
-    "types": "dist/index.d.ts",
-    "exports": {
-        ".": {
-            "types": "./dist/index.d.ts",
-            "import": "./dist/index.js",
-            "require": "./dist/index.cjs"
-        }
+    "bin": {
+        "pgmig": "./dist/cli.js"
     },
     "files": [
         "dist"
@@ -41,7 +34,7 @@
     },
     "devDependencies": {
         "@types/node": "^24.6.2",
-        "tsup": "^8.0.0",
+        "@types/pg": "^8.15.5",
         "typescript": "^5.0.0"
     },
     "engines": {
