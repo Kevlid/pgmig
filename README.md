@@ -186,16 +186,6 @@ sqlmig down
 sqlmig up
 ```
 
-### Production Deployment
-
-```bash
-# Using connection string from environment
-DATABASE_URL=$PROD_DB_URL sqlmig up
-
-# Or using individual credentials
-sqlmig up -h prod-db.example.com -d production_db -u admin -w $PROD_PW
-```
-
 ### CI/CD Example
 
 ```yaml
@@ -223,8 +213,8 @@ sqlmig up -m ./sql/migrations
 ## Options Reference
 
 ```
--m, --migrations-path   Migrations folder (default: ./migrations)
--e, --env-path          .env file path (default: ./.env)
+-m, --migrations        Migrations folder (default: ./migrations)
+-e, --env               .env file path (default: ./.env)
 
 Database (overrides .env):
 --uri                   Connection string
@@ -234,16 +224,3 @@ Database (overrides .env):
 -u, --user              Database user
 -w, --password          Database password
 ```
-
-## Tips
-
--   Migrations run in order by number (1, 2, 3...)
--   Always write the DOWN section so you can rollback if needed
--   Test migrations locally before running in production
--   Keep migrations small and focused on one change
--   Never edit a migration after it's been run in production
--   Use transactions - each migration runs in its own transaction
-
-## License
-
-MIT
