@@ -31,17 +31,17 @@ export function createMigration(dir: string, name: string) {
     const existing = getMigrations(dir);
     const nextNum = existing.length > 0 ? Math.max(...existing.map((m) => m.id)) + 1 : 1;
 
-    const safeName = name.replace(/\s+/g, "_").toLowerCase();
+    const safeName = name.replace(/\s+/g, "_");
     const filename = `${nextNum}-${safeName}.sql`;
     const path = join(dir, filename);
 
-    writeFileSync(path, "-- UP\n\n\n-- DOWN\n");
+    writeFileSync(path, "-- up\n\n\n-- down\n");
     return path;
 }
 
 export function parseMigration(sql: string) {
-    const upMatch = sql.match(/--\s*UP\s+([\s\S]*?)(?:--\s*DOWN|$)/i);
-    const downMatch = sql.match(/--\s*DOWN\s+([\s\S]*?)$/i);
+    const upMatch = sql.match(/--\s*up\s+([\s\S]*?)(?:--\s*down|$)/i);
+    const downMatch = sql.match(/--\s*down\s+([\s\S]*?)$/i);
 
     return {
         up: upMatch?.[1]?.trim() || "",
