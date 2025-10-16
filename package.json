@@ -17,10 +17,10 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/Kevlid/sqlmig.git"
+        "url": "git+https://github.com/Kevlid/sqlmig.git"
     },
     "bin": {
-        "sqlmig": "./dist/cli.js"
+        "sqlmig": "dist/cli.js"
     },
     "dependencies": {
         "pg": "^8.16.3"
