@@ -13,32 +13,25 @@
     "scripts": {
         "build": "tsc",
         "dev": "tsc --watch",
-        "clean": "rm -rf ./dist"
+        "clean": "rimraf ./dist"
     },
     "repository": {
         "type": "git",
         "url": "https://github.com/Kevlid/pgmig.git"
     },
-    "bugs": {
-        "url": "https://github.com/Kevlid/pgmig/issues"
-    },
-    "homepage": "https://github.com/Kevlid/pgmig#readme",
     "bin": {
         "pgmig": "./dist/cli.js"
     },
-    "files": [
-        "dist"
-    ],
     "dependencies": {
         "pg": "^8.16.3"
     },
     "devDependencies": {
         "@types/node": "^24.6.2",
         "@types/pg": "^8.15.5",
+        "rimraf": "^6.0.1",
         "typescript": "^5.0.0"
     },
     "engines": {
         "node": ">=16"
-    },
-    "packageManager": "pnpm@10.18.2"
+    }
 }

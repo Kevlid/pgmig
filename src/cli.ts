@@ -14,16 +14,16 @@ Commands:
   create <name>   Create new migration
 
 Options:
-  -m  Migrations folder (default: ./migrations)
-  -e  .env file path (default: ./.env)
+  -m, --migrations        Migrations folder (default: ./migrations)
+  -e, --env               .env file path (default: ./.env)
   
   Database (overrides .env):
-  --uri       Connection string
-  -h  Host
-  -p  Port
-  -d  Database
-  -u  User
-  -w  Password
+  --uri                   Connection string
+  -h, --host              Host
+  -p, --port              Port
+  -d, --database          Database
+  -u, --user              User
+  -w, --password          Password
 
 Examples:
   pgmig up
@@ -43,8 +43,8 @@ async function main() {
         const { values } = parseArgs({
             args,
             options: {
-                "migrations-path": { type: "string", short: "m" },
-                "env-path": { type: "string", short: "e" },
+                migrations: { type: "string", short: "m" },
+                env: { type: "string", short: "e" },
                 uri: { type: "string" },
                 host: { type: "string", short: "h" },
                 port: { type: "string", short: "p" },
@@ -56,8 +56,8 @@ async function main() {
         });
 
         const opts = {
-            migrationsPath: values["migrations-path"] as string | undefined,
-            envPath: values["env-path"] as string | undefined,
+            migrationsPath: values.migrations as string | undefined,
+            envPath: values.env as string | undefined,
             uri: values.uri as string | undefined,
             host: values.host as string | undefined,
             port: values.port ? parseInt(values.port as string) : undefined,
